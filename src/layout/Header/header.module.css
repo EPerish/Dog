@@ -1,12 +1,12 @@
-.logo {
+.logo_a {
     display: grid;
     gap: 4px;
-    justify-content: center;
+    justify-content: left;
     justify-items: center;
     text-align: center;
     
 }
-.logo img {
+.logo_a img {
     height: 50px;
     max-width: 50px;
 }
