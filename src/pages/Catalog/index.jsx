@@ -1,22 +1,26 @@
 import { useEffect , useState } from "react";
-import { TOKEN } from "../utils/constants";
-import { ProductCard } from "../ProductCard";
+import { AUTH_DOG_TOKEN} from "../../components/utils/constants";
+import { ProductCard } from "../../components/ProductCard";
+import { useNavigate } from "react-router-dom";
 
 export const Catalog = () => {
   const [data, setData] = useState({ total: 0, products: [] });
+  const navigate = useNavigate
+  const token = localStorage.getItem(AUTH_DOG_TOKEN)
 
   useEffect(() => {
+    if(token) return navigate('/signin')
+  }, [navigate, token])
+
+  // получаем все данные
+  useEffect(() => {
     const fetchDatas = async () => {
-      const responce = await fetch("https://api.react-learning.ru/products", {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      });
+      const responce = await fetchProducts(token)
       const res = await responce.json();
       setData(res);
     };
     fetchDatas();
-  }, []);
+  }, [token]);
 
   return (
     <main>
