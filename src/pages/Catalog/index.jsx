@@ -2,14 +2,15 @@ import { useEffect , useState } from "react";
 import { AUTH_DOG_TOKEN} from "../../components/utils/constants";
 import { ProductCard } from "../../components/ProductCard";
 import { useNavigate } from "react-router-dom";
+import { fetchProducts } from "../../api/products";
 
 export const Catalog = () => {
   const [data, setData] = useState({ total: 0, products: [] });
-  const navigate = useNavigate
+  const navigate = useNavigate()
   const token = localStorage.getItem(AUTH_DOG_TOKEN)
 
   useEffect(() => {
-    if(token) return navigate('/signin')
+    if(!token) return navigate('/signin')
   }, [navigate, token])
 
   // получаем все данные

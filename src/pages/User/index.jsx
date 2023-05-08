@@ -11,7 +11,7 @@ export const User = ()=> {
 
     useEffect(() => {
         if(!token) return navigate('/signin')
-      }, [navigate,token]
+      }, [navigate,token])
 
       
 
@@ -20,7 +20,7 @@ export const User = ()=> {
             const res = await fetchInfoAboutMe(token)
             const responce = await res.json()
 
-            console.log(response)
+            console.log(responce)
 
             return setUser(responce)
         }

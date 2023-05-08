@@ -7,9 +7,9 @@ export const fetchAuth = (values)=> fetch('https://api.react-learning.ru/signin'
   })
 
   export const fetchInfoAboutMe = (token) => {
-    return fetch('https://api.react-learning.ru/v2/group-11/users/me'), {
+    return fetch('https://api.react-learning.ru/v2/group-11/users/me', {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-  }
+  )}

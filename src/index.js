@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Catalog } from './components/Catalog';
 import { User } from './pages/User';
 import { SignUp } from './pages/SignUp';
 import { SignIn } from './pages/SignIn';
 import { Home } from './pages/Home';
+import { Catalog } from './pages/Catalog';
 
 const router = createBrowserRouter ([
    {
@@ -20,7 +20,7 @@ const router = createBrowserRouter ([
       },
         {
           path: 'products',
-          element: <Catalog/>
+          element: <Catalog />
         },
         {
           path: 'user/me',
