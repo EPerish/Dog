@@ -8,6 +8,10 @@ import { SignUp } from './pages/SignUp';
 import { SignIn } from './pages/SignIn';
 import { Home } from './pages/Home';
 import { Catalog } from './pages/Catalog';
+import {CurrentProduct} from './pages/CurrentProduct/index'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter ([
    {
@@ -23,6 +27,10 @@ const router = createBrowserRouter ([
           element: <Catalog />
         },
         {
+          path: 'products/:idOfProduct',
+          element: <CurrentProduct/>
+        },
+        {
           path: 'user/me',
           element: <User/>
         },
@@ -34,10 +42,7 @@ const router = createBrowserRouter ([
           path: '/signup',
           element: <SignUp/>
         },
-        // {
-        //   path: 'products/:idOfProduct',
-        //   element: <CurrentProduct/>
-        // },
+       
       ]
   }
 ]);
@@ -46,10 +51,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     
      
     <RouterProvider router={router} />
-    
+    </QueryClientProvider>
     
   </React.StrictMode>
 );

@@ -1,12 +1,13 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as Yup from 'yup';
 import { AUTH_DOG_TOKEN } from '../../components/utils/constants';
 import { useNavigate } from 'react-router-dom';
 import { fetchAuth } from '../../api/user';
+import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
 
-export const SignIn = ()=> {
-    const [error, setError] = useState(false)
+export const signin = ()=> {
     const navigate =  useNavigate()
 
     useEffect(() => {
@@ -28,10 +29,8 @@ export const SignIn = ()=> {
         password: '',
       }
     
-    
-      const onSubmit = async (values) => {
-        setError(false);
-
+    const { mutate } = useMutation({
+      mutateFn: async (values) =>{
         const res = await fetchAuth(values)
         const response = await res.json()
 
@@ -41,7 +40,21 @@ export const SignIn = ()=> {
             return navigate('/products')
         }
 
-        return setError(response.message)
+        return toast.error(responce.message)
+      }
+    })
+
+      const onSubmit = async (values) => mutate(values)
+        // const res = await fetchAuth(values)
+        // const response = await res.json()
+
+        // if (res.ok) {
+        //     localStorage.setItem(AUTH_DOG_TOKEN, response.token) 
+
+        //     return navigate('/products')
+        // }
+
+        // return toast.error(responce.message)
     }
 
     return (
@@ -67,9 +80,6 @@ export const SignIn = ()=> {
         <Field name="password" placeholder="Пароль" type= "password" />
         <ErrorMessage name = 'password'  component= "p" className = "warning"/>
       </div>
-
-        {error && <p className = 'warning'>{error}</p>}
-
         <button type="submit">Войти</button>
         <p>Еще не зарегистрированы? 
           <button onclick={()=>navigate('/signup')}
@@ -77,7 +87,6 @@ export const SignIn = ()=> {
         </p>
       </Form>
     </Formik>
-  </>
-       
-    )
+  </>   
+  )
 }
