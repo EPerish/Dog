@@ -1,19 +1,13 @@
-import { useEffect  } from "react";
-import { AUTH_DOG_TOKEN} from "../../components/utils/constants";
 import { ProductCard } from "../../components/ProductCard";
 import { useNavigate} from "react-router-dom";
 import { fetchProducts } from "../../api/products";
 import { toast } from 'react-toastify';
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Catalog = () => {
+  const { token } = useAuth()
   const navigate = useNavigate()
-
-  const token = localStorage.getItem(AUTH_DOG_TOKEN)
-
-  useEffect(() => {
-    if(!token) return navigate('/signin')
-  }, [navigate, token])
 
 
   const {data, isError, isLoading, error} = useQuery({
@@ -23,8 +17,8 @@ export const Catalog = () => {
       const  responce = await res.json();
 
       if (res.ok) {
-        setData(responce)
-        return toast.success(res.statusText);
+        toast.success('Результаты получены');
+        return responce
         }
 
         toast.error(responce.message)

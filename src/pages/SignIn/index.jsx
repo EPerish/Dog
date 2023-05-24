@@ -1,19 +1,18 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { useEffect } from 'react';
 import * as Yup from 'yup';
-import { AUTH_DOG_TOKEN } from '../../components/utils/constants';
 import { useNavigate } from 'react-router-dom';
 import { fetchAuth } from '../../api/user';
 import { toast } from 'react-toastify';
 import { useMutation } from '@tanstack/react-query';
+import { setNewUser } from '../../redux/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import { useNoAuth } from '../../hooks/useNoAuth';
 
 export const signin = ()=> {
     const navigate =  useNavigate()
+    const dispatch = useDispatch()
+    useNoAuth()
 
-    useEffect(() => {
-      const token = localStorage.getItem(AUTH_DOG_TOKEN)
-      if(token) return navigate('/products')
-    }, [navigate])
+   
 
 
     const signInSchema = Yup.object().shape({
@@ -34,9 +33,14 @@ export const signin = ()=> {
         const res = await fetchAuth(values)
         const response = await res.json()
 
+      
         if (res.ok) {
-            localStorage.setItem(AUTH_DOG_TOKEN, response.token) 
+              dispatch(setNewUser({
+              ...responce.data,
+              token: responce.token
+         }))
 
+            toast.success('Вы успешно зарегистрированы!')
             return navigate('/products')
         }
 

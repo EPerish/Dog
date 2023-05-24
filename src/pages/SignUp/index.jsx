@@ -1,20 +1,16 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { useEffect } from 'react';
 import * as Yup from 'yup';
 import { AUTH_DOG_TOKEN } from '../../components/utils/constants';
 import { useNavigate } from 'react-router-dom';
 import { fetchAuth, fetchReg } from '../../api/user';
 import { toast } from 'react-toastify';
+import { useNoAuth } from '../../hooks/useNoAuth';
 
 export const signUp = ()=> {
     const navigate =  useNavigate()
+    useNoAuth
 
-    useEffect( () => {
-      const token = localStorage.getItem(AUTH_DOG_TOKEN)
-      if(token) return navigate('/products')
-    }, [navigate])
-
-
+  
     const signUpSchema = Yup.object().shape({
           password: Yup.string()
           .min(4, 'min 4')

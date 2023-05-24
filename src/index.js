@@ -10,6 +10,7 @@ import { Home } from './pages/Home';
 import { Catalog } from './pages/Catalog';
 import {CurrentProduct} from './pages/CurrentProduct/index'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { store } from './redux/store';
 
 const queryClient = new QueryClient()
 
@@ -51,12 +52,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store = {store}>
     <QueryClientProvider client={queryClient}>
-    
-     
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </QueryClientProvider>
-    
+    </Provider>
   </React.StrictMode>
 );
 
