@@ -6,9 +6,9 @@ import { fetchAuth, fetchReg } from '../../api/user';
 import { toast } from 'react-toastify';
 import { useNoAuth } from '../../hooks/useNoAuth';
 
-export const signUp = ()=> {
+export const SignUp = ()=> {
     const navigate =  useNavigate()
-    useNoAuth
+    useNoAuth()
 
   
     const signUpSchema = Yup.object().shape({
@@ -44,7 +44,7 @@ export const signUp = ()=> {
             }
 
         }
-        return toast.error(responceReg.message)
+        return toast.error(responseReg.message)
     }
 
     return (

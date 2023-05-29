@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { getInitialData } from "./initialValues";
+import { REDUX_STATE_SUBSCR, getInitialData } from "./initialValues";
 import { userReducer } from "./slices/userSlice";
-
 
 export const store = configureStore({
     reducer: {
@@ -10,4 +9,4 @@ export const store = configureStore({
     preloadedState: getInitialData()
 })
 
-store.subscribe( ()=> localStorage.setItem(REDUX_STATE_SUBSCR,JSON.stringify(store.getState()))
+store.subscribe( () => localStorage.setItem(REDUX_STATE_SUBSCR, JSON.stringify(store.getState())))

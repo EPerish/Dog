@@ -6,8 +6,9 @@ import { useMutation } from '@tanstack/react-query';
 import { setNewUser } from '../../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNoAuth } from '../../hooks/useNoAuth';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 
-export const signin = ()=> {
+export const SignIn = ()=> {
     const navigate =  useNavigate()
     const dispatch = useDispatch()
     useNoAuth()
@@ -36,15 +37,15 @@ export const signin = ()=> {
       
         if (res.ok) {
               dispatch(setNewUser({
-              ...responce.data,
-              token: responce.token
+              ...response.data,
+              token: response.token
          }))
 
             toast.success('Вы успешно зарегистрированы!')
             return navigate('/products')
         }
 
-        return toast.error(responce.message)
+        return toast.error(response.message)
       }
     })
 
@@ -58,8 +59,8 @@ export const signin = ()=> {
         //     return navigate('/products')
         // }
 
-        // return toast.error(responce.message)
-    }
+        // return toast.error(response.message)
+    
 
     return (
         <>

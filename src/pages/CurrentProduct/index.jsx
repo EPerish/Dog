@@ -10,8 +10,8 @@ export const CurrentProduct = ()=> {
     const { idOfProduct } = useParams()
    
    
-const ( data, isError, isLoading, error ) = useQuery({
-    queryKey: ['getCurrentProduct', idOfProduct, token]
+const { data, isError, isLoading, error } = useQuery({
+    queryKey: ['getCurrentProduct', idOfProduct, token],
     queryFn: async () => {
         const res = await fetchCurruntProduct( idOfProduct, token);
         const responce = await res.json();

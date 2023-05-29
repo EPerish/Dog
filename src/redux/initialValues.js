@@ -1,3 +1,5 @@
+export const REDUX_STATE_SUBSCR = "REDUX_STATE"
+
 export const initialData = {
     user: {},
     filter: {
