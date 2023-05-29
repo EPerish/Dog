@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { AUTH_DOG_TOKEN } from '../../components/utils/constants';
+import { AUTH_DOG_TOKEN } from '../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 import { fetchAuth, fetchReg } from '../../api/user';
 import { toast } from 'react-toastify';

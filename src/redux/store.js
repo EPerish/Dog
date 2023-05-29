@@ -4,9 +4,9 @@ import { userReducer } from "./slices/userSlice";
 
 export const store = configureStore({
     reducer: {
-        user: userReducer   
+      user: userReducer
     },
     preloadedState: getInitialData()
-})
-
-store.subscribe( () => localStorage.setItem(REDUX_STATE_SUBSCR, JSON.stringify(store.getState())))
+  })
+  
+  store.subscribe(() => localStorage.setItem(REDUX_STATE_SUBSCR, JSON.stringify(store.getState())))

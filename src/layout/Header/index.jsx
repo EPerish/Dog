@@ -2,7 +2,7 @@ import styles from './header.module.css';
 import { Search } from '../../components/Search'
 import Logo from '../Logo';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { AUTH_DOG_TOKEN } from '../../components/utils/constants';
+import { AUTH_DOG_TOKEN } from '../../utils/constants';
 
 
 export const Header = () => {

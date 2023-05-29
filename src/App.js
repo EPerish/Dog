@@ -14,14 +14,14 @@ function App() {
       </main>
       <Footer />
       <ToastContainer
-position="top-right"
+          position="top-right"
 autoClose={5000}
 closeOnClick
 theme="colored"
-/>
-    </div>
-     );
-  };
+        />
+      </div>
+    );
+  }
 
 
 export default App;
