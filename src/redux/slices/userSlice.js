@@ -1,18 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialData } from "../initialValues";
+import {REDUX_STATE_SUBSCR} from '../../utils/constants'
 
-export const userSlice = createSlice({
-    name:'user',
+const userSlice = createSlice({
+    name: 'user',
     initialState: initialData.user,
     reducers: {
-        setNewUser(state, action) {
-            return action.payload
-        },
-        clearUser(){
-            return initialData.user
-        }
+      setNewUser(_, action) {
+        return action.payload
+      },
+      clearUser() {
+        localStorage.removeItem(REDUX_STATE_SUBSCR)
+  
+        return initialData.user
+      }
     }
-})
-
-export const { setNewUser, clearUser } = userSlice.actions
-export const userReducer = userSlice.reducer
+  })
+  
+  export const { setNewUser, clearUser } = userSlice.actions
+  export const userReducer = userSlice.reducer

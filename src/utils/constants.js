@@ -4,3 +4,5 @@ export const TOKEN =
   export const  AUTH_DOG_TOKEN= 'auth_dog_token';
 
   export const  REDUX_STATE_SUBSCR = 'redux_state_subscr';
+
+  export const PARAM_SEARCH = 'search'
